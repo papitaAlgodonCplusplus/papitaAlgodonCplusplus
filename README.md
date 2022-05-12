@@ -107,4 +107,24 @@ Agregar estructuras apuntadas por shared_ptr por orden numérico:
 			aux->sg= shared_ptr<X>(new X(numeroagregando));
 			aux->sg->sg = p;
 		}
-	}
+}
+
+Punteros dobles:
+igual pueden guardar una variable o variable[]
+variable** pD; 
+pD = new variable*[n];
+variable* pS;
+pS = new variable[n];
+//Una vez listo pS:
+for (int i = 0; i < n; i++) { 
+         pD[i] = &pS[i];
+}
+//Para borrar memoria hay 2 opciones:
+//1 (la mejor): 
+for (int i = 0; i < n; i++){
+delete[] pD[i];
+}
+delete[] pD;
+//2:
+delete[] pD[0];
+delete[] pD;
