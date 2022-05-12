@@ -128,3 +128,8 @@ delete[] pD;
 //2:
 delete[] pD[0];
 delete[] pD;
+
+Devolver por metodo tipo void:
+metodo x(variable r){
+r = lo que se ocupa retornar;
+}
