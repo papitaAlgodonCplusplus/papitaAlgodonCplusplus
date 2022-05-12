@@ -29,3 +29,42 @@ X::X(ifstream& archivo){
                         //Codigo a operar tomando x como el elemento encontrado por cada , }
                         }
 }
+
+Google test:
+1- Click derecho sobre la solucion arriba arriba
+2-Agregar
+3-Nuevo proyecto
+4-Por defecto sale Google test, continuar
+5-Se pone nombre y crear
+#include "X.h"
+class XTest : public ::testing::Test
+{
+protected:
+           bool finDePruebas = false; //Para que el destructor solo destruya cuando terminen las pruebas
+           variables globales que usen los test;
+           X(); //Tanto esto como SetUp se ejecutan al principio de cada test
+	   ~X() override; //Tanto esto como TearDown se ejecutan al final de cada test
+           void SetUp() override;
+           void TearDown() override;
+};
+XTest::X(){ //Se definen las variables globales}
+XTest::~X(){//Se borra memoria, para no ocasionar problemas agregar if(finDePruebas){.....}}
+void  XTest::SetUp() {}
+void  XTest::TearDown() {}
+//Un test de ejemplo
+TEST_F(XTest, ChaChaCha){
+EXPECT_EQ(1, 1);
+}
+//¡¡¡Esta prueba falla al proposito!!!, lo unico que hace es indicar que las pruebas reales terminaron
+TEST_F(XTest, Terminar) {
+	finDePruebas = true;
+}
+//EXPECT_TRUE(bool x);
+//EXPECT_FALSE(bool x);
+//EXPECT_EQ(int a, int b)  a == b
+//EXPECT_NE(int a, int b)  a != b
+//EXPECT_LT(int a, int b)  a < b
+//EXPECT_LE(int a, int b)  a <= b
+//EXPECT_GT(int a, int b)  a > b
+//EXPECT_GE(int a, int b)  a >= b
+//Para ASSERT, solo cambiar EXPECT por ASSERT (Que es como para mas obligatoriedad)
