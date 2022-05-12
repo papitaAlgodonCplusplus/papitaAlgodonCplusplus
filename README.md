@@ -68,3 +68,43 @@ TEST_F(XTest, Terminar) {
 //EXPECT_GT(int a, int b)  a > b
 //EXPECT_GE(int a, int b)  a >= b
 //Para ASSERT, solo cambiar EXPECT por ASSERT (Que es como para mas obligatoriedad)
+	
+Agregar estructuras apuntadas por shared_ptr por orden numérico:
+//REQ: Estructura X tenga puntero a siguiente sg y la clase un puntero a inicio de estructura
+	bool encontrado = false; //indica si ya encontramos la posicion en donde colocamos
+	shared_ptr<X> p = inicio; //apuntador al inicio
+	shared_ptr<X > aux = 0; //como un auxiliar
+	if (inicio == 0) { //Si no hay nada en el inicio, agregamos aqui
+		inicio = shared_ptr<X>(new X(numeroagregando));
+		encontrado = true;
+	}
+	else if (inicio->numero> numeroagregando) { //En caso de que se ocupe poner antes de inicio
+		p = shared_ptr<X>(new X(numeroagregando));     // Se crea el nuevo X
+		p->sg = inicio;         // Se reespalda el numero del inicio
+		inicio = p;              // Ponemos el nuevo X en orden
+		encontrado = true;
+	}
+	else {                       // Si no esta al inicio, ni antes del inicio, buscamos el X de referencia
+		p = inicio;
+		while (p != 0) {
+			if (p->numero == numeroagregando)   //Si ya existía el numero entonces no hacemos nada
+				p = 0;
+			else { // Seguimos buscando
+				if (p->numero <numeroagregando) { //Si nuestro numero esmayor al ultimo encontrado, va despues
+					aux = p;
+					p = p->sg;
+					if (p == 0) // Si no hay un numero luego, se agrega al final
+						encontrado = true;
+				}
+				else { //Si p->numero > numeroagregando, solo la ponemos antes de p
+					p = 0;
+					encontrado = true; // hay que agregarlo
+				}
+			}
+		}
+		if (encontrado) { //Una vez determinado donde va, solo lo colocamos
+			p = aux->sg;
+			aux->sg= shared_ptr<X>(new X(numeroagregando));
+			aux->sg->sg = p;
+		}
+	}
