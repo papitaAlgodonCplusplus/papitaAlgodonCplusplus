@@ -26,6 +26,6 @@ X::X(ifstream& archivo){
 		while (archivo >> linea) { //mientras existan lineas en archivo
 			stringstream s(linea); //necesario para el getline
 			while (getline(s, x, ',')) {
-                        //Codigo a operar tomando x como el elemento encontrado por cada , 
+                        //Codigo a operar tomando x como el elemento encontrado por cada , }
                         }
 }
