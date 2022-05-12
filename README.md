@@ -6,16 +6,15 @@ delete Xa;
 delete[] a;
 
 Lectura de archivos:
+main.cpp:
 #include <iostream>
 #include <fstream>
-Lectura de archivos:
 ifstream archivo("archivo.extencion", ios::in);
 	if (!archivo)
 		cout << "No se encontró el archivo" << endl;
-	X a = X(archivo); //Se crea un nuevo objeto a de tipo X en el que constructor recibe arch para operar 
-
+	X a = X(archivo); //Se crea un nuevo objeto a de tipo X en el que constructor recibe archivo para operar 
+X.h:
 constructor:
-
 X::X(ifstream& archivo){
       if (archivo.is_open()) {
 		string n; //El string que ocupa getline
