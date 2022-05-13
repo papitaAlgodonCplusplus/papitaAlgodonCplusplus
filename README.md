@@ -133,3 +133,12 @@ Devolver por metodo tipo void:
 metodo x(variable r){
 r = lo que se ocupa retornar;
 }
+
+Usar un constructor de clase X en un test si este no tiene constructor predeterminado (X a()):
+En la clase del test:
+... protected: X* a;
+variable n;
+en el constructor del test:
+a = new X(....);
+n = a->obtenerAlgoDea;
+Ahora ya se puede usar n para pruebas en cualquier test
