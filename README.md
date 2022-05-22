@@ -142,3 +142,8 @@ en el constructor del test:
 a = new X(....);
 n = a->obtenerAlgoDea;
 Ahora ya se puede usar n para pruebas en cualquier test
+
+Convertir lista a vector:
+for (variable const &c: lista) {
+        vector.push_back(c);
+}
