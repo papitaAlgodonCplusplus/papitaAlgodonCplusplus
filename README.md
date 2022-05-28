@@ -147,3 +147,11 @@ Convertir lista a vector:
 for (variable const &c: lista) {
         vector.push_back(c);
 }
+
+Sobrecargar <<, pasar por referencia y for auto:
+ostream& operator<<(ostream& o, const Clase& c) {
+        for (auto& e : c.arregloDeEnteros){
+        o << e;
+        }
+	return o;
+}
